@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import useHttp from "../../assets/hooks/useHttp";
+
+import "./Browse.css";
 
 import Navbar from "../../components/Navbar";
 import Banner from "../../components/Banner";
-import ObjectsList from "../../components/ObjectsList";
-
-import MovieContext from "../../store/MovieContext";
+import SubjectList from "../../components/SubjectList";
 
 const requestConfig = {};
 const API_KEY = "ebdfe99a5e2ab4ba5d1256336c5f3fa4";
@@ -30,10 +29,6 @@ const linkRomanceMovies = `https://api.themoviedb.org/3${requests.fetchRomanceMo
 const linkDocumentaries = `https://api.themoviedb.org/3${requests.fetchDocumentaries}`;
 const linkSearch = `https://api.themoviedb.org/3${requests.fetchSearch}`;
 export default function Browse() {
-  const movieCxt = useContext(MovieContext);
-  console.log(movieCxt.movieList);
-
-  // const dataRequest = useHttp(linkTrending, requestConfig, []);
   const dataRequest = useHttp(linkTrending, requestConfig, []);
 
   console.log(dataRequest.data.results);
@@ -43,7 +38,7 @@ export default function Browse() {
       <h1>Browse</h1>
       <Navbar />
       <Banner />
-      <ObjectsList />
+      <SubjectList />
     </div>
   );
 }
