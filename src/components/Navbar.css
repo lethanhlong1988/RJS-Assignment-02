@@ -1,0 +1,9 @@
+.navbar {
+  height: 20vh;
+  background-image: url("../assets/NavPic.jpg");
+  background-size: cover;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
