@@ -1,9 +1,21 @@
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* background-image: url("../assets/NavPic.jpg"); */
+}
+
 .navbar {
-  height: 20vh;
-  background-image: url("../assets/NavPic.jpg");
-  background-size: cover;
+  /* height: 2rem; */
+  transition: background-color 0.3s;
+  background-color: transparent;
+  background-size: contain;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.navbar.scrolled {
+  background-color: black;
 }

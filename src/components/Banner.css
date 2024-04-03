@@ -1,0 +1,13 @@
+.action-bar {
+  display: flex;
+  align-content: flex-start;
+  gap: 5px;
+}
+.my-content {
+  padding-top: 5rem;
+  padding-left: 2rem;
+  width: 45%;
+  color: white;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
