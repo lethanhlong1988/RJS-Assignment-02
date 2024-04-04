@@ -2,6 +2,8 @@ import { useContext } from "react";
 
 import "./SubjectList.css";
 
+import MovieList from "./MovieList";
+
 import MovieContext from "../store/MovieContext";
 
 export default function ObjectsList() {
@@ -11,7 +13,7 @@ export default function ObjectsList() {
     <div className="object-list-container">
       <div>Object</div>
       {movieCxt.objectList.map((object) => {
-        return <div>Object</div>;
+        return <MovieList />;
       })}
     </div>
   );
