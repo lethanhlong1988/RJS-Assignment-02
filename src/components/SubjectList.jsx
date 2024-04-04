@@ -8,13 +8,14 @@ import MovieContext from "../store/MovieContext";
 
 export default function ObjectsList() {
   const movieCxt = useContext(MovieContext);
-  console.log(movieCxt.objectList);
   return (
-    <div className="object-list-container">
-      <div>Object</div>
-      {movieCxt.objectList.map((object) => {
-        return <MovieList />;
+    <ul className="object-list-container">
+      <div>Subject</div>
+      {movieCxt.subjectList.map((subject) => {
+        return (
+          <MovieList key={subject.id} name={subject.name} link={subject.link} />
+        );
       })}
-    </div>
+    </ul>
   );
 }
