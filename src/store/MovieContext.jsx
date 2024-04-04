@@ -51,14 +51,14 @@ export function MovieContextProvider({ children }) {
     ],
     movieList: [],
     linkTrending: `https://api.themoviedb.org/3${requests.fetchTrending}`,
-    linkNetflixOriginals: `https://api.themoviedb.org/3${requests.fetchNetflixOriginals}`,
-    linkTopRated: `https://api.themoviedb.org/3${requests.fetchTopRated}`,
-    linkActionMovies: `https://api.themoviedb.org/3${requests.fetchActionMovies}`,
-    linkComedyMovies: "",
-    linkHorrorMovies: "",
-    linkRomanceMovies: "",
-    linkDocumentaries: "",
-    linkSearch: "",
+    // linkNetflixOriginals: `https://api.themoviedb.org/3${requests.fetchNetflixOriginals}`,
+    // linkTopRated: `https://api.themoviedb.org/3${requests.fetchTopRated}`,
+    // linkActionMovies: `https://api.themoviedb.org/3${requests.fetchActionMovies}`,
+    // linkComedyMovies: "",
+    // linkHorrorMovies: "",
+    // linkRomanceMovies: "",
+    // linkDocumentaries: "",
+    // linkSearch: "",
   };
   return (
     <MovieContext.Provider value={movieContext}>
