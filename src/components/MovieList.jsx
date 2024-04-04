@@ -22,21 +22,23 @@ export default function MovieList({ name, link }) {
   if (!movieList || movieList.length === 0) {
     return <p>No movies found!!!</p>;
   }
-  console.log(movieList);
-
+  const view = false;
   return (
     <ul className="movie-list-container">
-      <li className="movie-list">
-        {movieList.map((movie, index) => (
-          <MovieCard
-            key={index}
-            className="movie-item"
-            title={movie.title}
-            link={requestLink}
-            movie={movie}
-          />
-        ))}
-      </li>
+      {view ? (
+        <div className="movie-list">
+          {movieList.map((movie, index) => (
+            <MovieCard key={index} movie={movie} view={true} />
+          ))}
+        </div>
+      ) : (
+        <div className="movie-list">
+          {movieList.map((movie, index) => (
+            <MovieCard key={index} movie={movie} view={false} />
+          ))}
+        </div>
+      )}
+
       <h3>{name}</h3>
     </ul>
   );

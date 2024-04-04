@@ -1,0 +1,17 @@
+.movie-card {
+  list-style: none;
+  display: flex;
+}
+
+.poster-image {
+  max-width: 50px;
+  height: auto;
+}
+
+.poster-image:hover {
+  transition: transform 0.3s ease;
+
+  transform: scale(1.2);
+  transform-origin: center center;
+  margin: 0;
+}

@@ -10,7 +10,7 @@ export default function ObjectsList() {
   const movieCxt = useContext(MovieContext);
   return (
     <ul className="object-list-container">
-      <div>Subject</div>
+      <h2>Subject</h2>
       {movieCxt.subjectList.map((subject) => {
         return (
           <MovieList key={subject.id} name={subject.name} link={subject.link} />

@@ -1,17 +1,27 @@
-import React from 'react';
+import React from "react";
 import "./MovieCard.css";
-// import { useContext } from "react";
 
-// import MovieContext from "../store/MovieContext";
+import Button from "../components/UI/Button";
 
-export default function MovieCard({ title, link, movie }) {
-  //   const movieCxt = useContext(MovieContext);
+export default function MovieCard({ movie, view }) {
+  const backDropView = view;
   return (
-    <li>
-      <article className="movie-card">
-        <img src={`${link}${movie.backdrop_path}`} alt="Pic" />
-        <p>{title}</p>
-      </article>
+    <li className="movie-card">
+      <Button textOnly>
+        {backDropView ? (
+          <img
+            className="poster-image"
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+            alt="Pic"
+          />
+        ) : (
+          <img
+            className="poster-image"
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt="Pic"
+          />
+        )}
+      </Button>
     </li>
   );
 }
