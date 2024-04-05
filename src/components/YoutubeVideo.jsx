@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import YouTube from "react-youtube";
 
-const YoutubeVideo = () => {
+const YoutubeVideo = ({ videoId }) => {
   const [player, setPlayer] = useState(null);
 
   const opts = {
@@ -18,7 +18,7 @@ const YoutubeVideo = () => {
     event.target.pauseVideo();
   };
 
-  return <YouTube videoId="P9pai8K8AaY" opts={opts} onReady={onReady} />;
+  return <YouTube videoId={videoId} opts={opts} onReady={onReady} />;
 };
 
 export default YoutubeVideo;

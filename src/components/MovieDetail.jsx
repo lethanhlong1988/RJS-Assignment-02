@@ -23,14 +23,21 @@ export default function MovieDetail() {
   if (error) {
     return <p>Something went wrong ...</p>;
   }
-  const loadVideos = loadData.id;
+
   console.log(loadData.results);
+  if (!loadData || loadData.length === 0) {
+    return <p>No Video found!!!</p>;
+  }
   const firstMatchingVideo = loadData.results.find(
     (video) =>
       video.site === "YouTube" &&
       (video.type === "Trailer" || video.type === "Teaser"),
   );
-  console.log(firstMatchingVideo);
+  console.log(firstMatchingVideo.key);
+  if (!firstMatchingVideo || firstMatchingVideo.length === 0) {
+    return <p>No Video found!!!</p>;
+  }
+  const currentKey = firstMatchingVideo.key;
 
   return (
     <div className="movie-detail-container">
@@ -45,7 +52,9 @@ export default function MovieDetail() {
 
         <p>{currentMovie.overview}</p>
       </div>
-      <div className="movie-video">{<YoutubeVideo />}</div>
+      <div className="movie-video">
+        <YoutubeVideo videoId={currentKey} />
+      </div>
     </div>
   );
 }
