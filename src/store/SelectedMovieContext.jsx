@@ -18,6 +18,7 @@ export function SelectedMovieContextProvider({ children }) {
     const link = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`;
     setSelectedMovie(movie);
     setCurrentLink(link);
+    setViewOn(true);
     console.log("selected");
   }
 

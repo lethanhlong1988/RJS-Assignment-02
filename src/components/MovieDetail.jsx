@@ -23,17 +23,15 @@ export default function MovieDetail() {
   if (error) {
     return <p>Something went wrong ...</p>;
   }
-  // const loadVideos = loadData.id;
-  // console.log(loadData);
-  // const firstMatchingVideo = dataRequest.data.results.find(
-  //   (video) =>
-  //     video.site === "YouTube" &&
-  //     (video.type === "Trailer" || video.type === "Teaser"),
-  // );
-  // console.log(firstMatchingVideo);
-  if ((currentMovie = {})) {
-    return <div></div>;
-  }
+  const loadVideos = loadData.id;
+  console.log(loadData.results);
+  const firstMatchingVideo = loadData.results.find(
+    (video) =>
+      video.site === "YouTube" &&
+      (video.type === "Trailer" || video.type === "Teaser"),
+  );
+  console.log(firstMatchingVideo);
+
   return (
     <div className="movie-detail-container">
       <div className="movie-detail">

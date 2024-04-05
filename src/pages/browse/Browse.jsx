@@ -1,4 +1,5 @@
 import useHttp from "../../components/hooks/useHttp";
+import { useContext } from "react";
 
 import "./Browse.css";
 
@@ -7,13 +8,16 @@ import Banner from "../../components/Banner";
 import MovieDetail from "../../components/MovieDetail";
 import SubjectList from "../../components/SubjectList";
 
+import SelectedMovieContext from "../../store/SelectedMovieContext";
+
 export default function Browse() {
+  const selectedMovieCtx = useContext(SelectedMovieContext);
   return (
     <div className="app">
       <h1>Browse</h1>
       <Navbar />
       <Banner />
-      {/* <MovieDetail /> */}
+      {selectedMovieCtx.viewOn && <MovieDetail />}
       <SubjectList />
     </div>
   );
