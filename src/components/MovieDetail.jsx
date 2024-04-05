@@ -24,10 +24,13 @@ export default function MovieDetail() {
     return <p>Something went wrong ...</p>;
   }
 
-  console.log(loadData.results);
   if (!loadData || loadData.length === 0) {
     return <p>No Video found!!!</p>;
   }
+  if (!loadData.results || loadData.results.length === 0) {
+    return <p>No information!!!</p>;
+  }
+  console.log(loadData.results);
   const firstMatchingVideo = loadData.results.find(
     (video) =>
       video.site === "YouTube" &&
