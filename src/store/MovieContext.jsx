@@ -14,17 +14,20 @@ const requests = {
 };
 
 const MovieContext = createContext({
+  subjectTrending: [],
   subjectList: [],
 });
 
 export function MovieContextProvider({ children }) {
   const movieContext = {
-    subjectList: [
+    subjectTrending: [
       {
         id: 1,
         name: "Trending",
         link: `https://api.themoviedb.org/3${requests.fetchTrending}`,
       },
+    ],
+    subjectList: [
       {
         id: 2,
         name: "Netflix Originals",

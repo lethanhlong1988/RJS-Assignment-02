@@ -6,17 +6,20 @@ import Search from "./pages/search/Search";
 import Browse from "./pages/browse/Browse";
 
 import { MovieContextProvider } from "./store/MovieContext";
+import { SelectedMovieContextProvider } from "./store/SelectedMovieContext";
 
 function App() {
   return (
-    <MovieContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Browse />} />
-          <Route path="/search" element={<Search />} />
-        </Routes>
-      </BrowserRouter>
-    </MovieContextProvider>
+    <SelectedMovieContextProvider>
+      <MovieContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Browse />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </BrowserRouter>
+      </MovieContextProvider>
+    </SelectedMovieContextProvider>
   );
 }
 

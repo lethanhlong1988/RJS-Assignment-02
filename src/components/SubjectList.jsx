@@ -11,9 +11,24 @@ export default function ObjectsList() {
   return (
     <ul className="object-list-container">
       <h2>Subject</h2>
+      {movieCxt.subjectTrending.map((subject) => {
+        return (
+          <MovieList
+            key={subject.id}
+            name={subject.name}
+            link={subject.link}
+            view={false}
+          />
+        );
+      })}
       {movieCxt.subjectList.map((subject) => {
         return (
-          <MovieList key={subject.id} name={subject.name} link={subject.link} />
+          <MovieList
+            key={subject.id}
+            name={subject.name}
+            link={subject.link}
+            view={true}
+          />
         );
       })}
     </ul>
