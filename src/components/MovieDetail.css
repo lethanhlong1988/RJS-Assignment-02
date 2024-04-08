@@ -1,6 +1,14 @@
 .movie-detail-container {
   display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
   background-color: black;
+}
+
+.movie-detail-content {
+  width: 90%;
+  display: flex;
   font-size: 0.75rem;
   line-height: 1.5;
 }
@@ -13,4 +21,7 @@
 .movie-video {
   flex: 1;
   width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

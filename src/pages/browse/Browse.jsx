@@ -14,11 +14,13 @@ export default function Browse() {
   const selectedMovieCtx = useContext(SelectedMovieContext);
   return (
     <div className="app">
-      <h1>Browse</h1>
-      <Navbar />
-      <Banner />
-      {selectedMovieCtx.viewOn && <MovieDetail />}
-      <SubjectList />
+      <div className="app-content">
+        <h1>Browse</h1>
+        <Navbar />
+        <Banner />
+        {selectedMovieCtx.viewOn && <MovieDetail />}
+        <SubjectList />
+      </div>
     </div>
   );
 }
