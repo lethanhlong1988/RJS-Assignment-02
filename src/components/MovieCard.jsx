@@ -13,6 +13,7 @@ export default function MovieCard({ movie, view }) {
 
   function selectedMovie(movie) {
     SelectedMovieCtx.selectMovie(movie);
+    console.log(movie);
   }
   return (
     <li className="movie-card">
