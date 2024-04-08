@@ -62,7 +62,7 @@ export default function MovieTrailer({ movie, link }) {
     return currentKey;
   }, [link]);
   const videoKey = getTrailer();
-  setTrailerKey()
+  setTrailerKey();
   // useEffect(() => {
   //   if (
   //     !isLoading &&
