@@ -1,5 +1,5 @@
 import useHttp from "../../components/hooks/useHttp";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 
 import "./Browse.css";
 
@@ -12,6 +12,7 @@ import SelectedMovieContext from "../../store/SelectedMovieContext";
 
 export default function Browse() {
   const selectedMovieCtx = useContext(SelectedMovieContext);
+
   return (
     <div className="app">
       <div className="app-content">
