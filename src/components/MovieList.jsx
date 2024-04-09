@@ -5,7 +5,6 @@ import useHttp from "./hooks/useHttp";
 import MovieCard from "./MovieCard";
 import MovieDetail from "./MovieDetail";
 
-
 const requestConfig = {};
 
 export default function MovieList({ name, link, view }) {
@@ -23,6 +22,7 @@ export default function MovieList({ name, link, view }) {
   if (!movieList || movieList.length === 0) {
     return <p>No movies found!!!</p>;
   }
+
   return (
     <ul className="movie-list-container">
       {!view ? (

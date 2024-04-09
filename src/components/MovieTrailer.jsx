@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import useHttp from "./hooks/useHttp";
+import useGetVideo from "./hooks/useGetVideo";
 
 import YoutubeVideo from "./YoutubeVideo";
 
@@ -8,8 +8,6 @@ import "./MovieTrailer.css";
 
 const requestConfig = {};
 export default function MovieTrailer({ movie, link }) {
-  const [gotVideo, setGotVideo] = useState(true);
-  const [currentKey, setCurrentKey] = useState(null);
   const img = (
     <img
       className="poster-image-0"
@@ -18,13 +16,25 @@ export default function MovieTrailer({ movie, link }) {
     />
   );
   console.log(link);
-  
+
+  const { currentKey, isLoading, error } = useGetVideo(link, requestConfig, []);
+  if (isLoading) {
+    return <p className="isLoading">Loading ...</p>;
+  }
+  if (error) {
+    return (
+      <div className="movie-trailer-container">
+        <div>Movie Trailer</div>
+        {img}
+      </div>
+    );
+  }
 
   return (
     <div className="movie-trailer-container">
       <div>Movie Trailer</div>
-      {/* {currentKey && <YoutubeVideo videoId={currentKey} />} */}
-      {img}
+      {currentKey && <YoutubeVideo videoId={currentKey} />}
+      {/* {img} */}
     </div>
   );
 }

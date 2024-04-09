@@ -1,37 +1,41 @@
-import { useEffect } from "react";
-
+import React, { useEffect } from "react";
 import "./Navbar.css";
-
 import Button from "./UI/Button.jsx";
-
 import { ImSearch } from "react-icons/im";
+
 export default function Navbar() {
   const goBrowsePageHandler = (e) => {
     e.preventDefault();
     window.location.replace("/");
   };
+
   const goSearchPageHandler = (e) => {
     e.preventDefault();
     window.location.replace("/search");
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", function () {
+    const handleScroll = () => {
       var navbar = document.querySelector(".navbar");
       if (window.scrollY > 25) {
-        // Kiểm tra nếu đã cuộn xuống quá 100px
         navbar.classList.add("scrolled");
       } else {
         navbar.classList.remove("scrolled");
       }
-    });
-  }, [window.scrolly]);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Removed unnecessary dependency array
 
   return (
     <div className="navbar-container">
       <div className="navbar">
         <Button textOnly onClick={goBrowsePageHandler}>
-          Movive App
+          Movie App
         </Button>
         <Button textOnly className="find-icon" onClick={goSearchPageHandler}>
           <ImSearch />

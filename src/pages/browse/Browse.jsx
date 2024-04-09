@@ -1,5 +1,4 @@
-import useHttp from "../../components/hooks/useHttp";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import "./Browse.css";
 

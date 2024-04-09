@@ -1,18 +1,18 @@
 import React from "react";
 
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 
+import SelectedMovieContext from "../store/SelectedMovieContext";
 import "./MovieCard.css";
 
 import Button from "../components/UI/Button";
-import SelectedMovieContext from "../store/SelectedMovieContext";
 
 export default function MovieCard({ movie, view }) {
   const backDropView = view;
-  const SelectedMovieCtx = useContext(SelectedMovieContext);
+  const selectedMovieCtx = useContext(SelectedMovieContext);
 
   function selectedMovie(movie) {
-    SelectedMovieCtx.selectMovie(movie);
+    selectedMovieCtx.selectMovie(movie);
     console.log(movie);
   }
   return (
