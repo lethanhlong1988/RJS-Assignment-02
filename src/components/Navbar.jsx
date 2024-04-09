@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import "./Navbar.css";
 
 import Button from "./UI/Button.jsx";
@@ -12,15 +14,18 @@ export default function Navbar() {
     e.preventDefault();
     window.location.replace("/search");
   };
-  window.addEventListener("scroll", function () {
-    var navbar = document.querySelector(".navbar");
-    if (window.scrollY > 25) {
-      // Kiểm tra nếu đã cuộn xuống quá 100px
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", function () {
+      var navbar = document.querySelector(".navbar");
+      if (window.scrollY > 25) {
+        // Kiểm tra nếu đã cuộn xuống quá 100px
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  }, [window.scrolly]);
 
   return (
     <div className="navbar-container">

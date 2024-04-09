@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import useHttp from "./hooks/useHttp";
 
@@ -8,7 +8,8 @@ import "./MovieTrailer.css";
 
 const requestConfig = {};
 export default function MovieTrailer({ movie, link }) {
-  const [trailerKey, setTrailerKey] = useState(null);
+  const [gotVideo, setGotVideo] = useState(true);
+  const [currentKey, setCurrentKey] = useState(null);
   const img = (
     <img
       className="poster-image-0"
@@ -16,81 +17,69 @@ export default function MovieTrailer({ movie, link }) {
       alt="Pic"
     />
   );
-  // const [gotVideo, setGotVideo] = useState(true);
-  const getTrailer = useCallback(() => {
-    const {
-      data: loadData,
-      isLoading,
-      error,
-    } = useHttp(link, requestConfig, []);
-    if (isLoading) {
-      return <p>Fetching Movies ...</p>;
-    }
-    if (error) {
-      return (
-        <div className="movie-trailer-container">
-          <div>Movie Trailer-Long</div>
-          {img}
-        </div>
-      );
-    }
-    if (!loadData || loadData.length === 0) {
-      return;
-      <div className="movie-trailer-container">
-        <div>Movie Trailer-Long</div>
-        {img}
-      </div>;
-    }
-    if (!loadData.results || loadData.results.length === 0) {
-      return;
-      <div className="movie-trailer-container">
-        <div>Movie Trailer-Long</div>
-        {img}
-      </div>;
-    }
-    console.log(loadData.results);
-    const firstMatchingVideo = loadData.results.find(
-      (video) =>
-        video.site === "YouTube" &&
-        (video.type === "Trailer" || video.type === "Teaser"),
-    );
-    console.log(firstMatchingVideo.key);
-    if (!firstMatchingVideo || firstMatchingVideo.length === 0) {
-      return <p>No Video found!!!</p>;
-    }
-    const currentKey = firstMatchingVideo.key;
-    return currentKey;
-  }, [link]);
-  const videoKey = getTrailer();
-  setTrailerKey();
-  // useEffect(() => {
+  console.log(link);
+  // const {
+  //   data: loadDatas,
+  //   isLoading,
+  //   error,
+  // } = useHttp(link, requestConfig, []);
+
+  // if (loadDatas) {
   //   if (
-  //     !isLoading &&
-  //     !error &&
-  //     (!loadData ||
-  //       loadData.length === 0 ||
-  //       !loadData.results ||
-  //       loadData.results.length === 0)
+  //     !loadDatas ||
+  //     loadDatas.length === 0 ||
+  //     !loadDatas.results ||
+  //     loadDatas.results.length === 0
   //   ) {
   //     setGotVideo(false);
+  //   } else {
+  //     const firstMatchingVideo = loadDatas.results.find(
+  //       video.site === "YouTube" &&
+  //         (video.type === "Trailer" || video.type === "Teaser"),
+  //     );
+  //     if (!firstMatchingVideo || firstMatchingVideo.length === 0) {
+  //       setGotVideo(false);
+  //     }
   //   }
-  // }, [isLoading, error, loadData]);
+  // }
+
+  // if (isLoading) {
+  //   return <p className="isLoading">Fetching Trailer ...</p>;
+  // }
+
+  // if (error) {
+  //   console.log(error);
+  //   return (
+  //     <div className="movie-trailer-container">
+  //       <div>Movie Trailer-Long</div>
+  //       {img}
+  //     </div>
+  //   );
+  // }
+
+  // if (!gotVideo) {
+  //   console.log(gotVideo);
+  //   return (
+  //     <div className="movie-trailer-container">
+  //       <div>Movie Trailer-Long</div>
+  //       {img}
+  //     </div>
+  //   );
+  // }
+
+  // if (loadDatas && loadDatas.results) {
+  //   const firstMatchingVideo = loadDatas.results.find(
+  //     video.site === "YouTube" &&
+  //       (video.type === "Trailer" || video.type === "Teaser"),
+  //   );
+  //   setCurrentKey(firstMatchingVideo.key);
+  // }
 
   return (
     <div className="movie-trailer-container">
-      <div>Movie Trailer-Long</div>
-      {getTrailer && <YoutubeVideo videoId={getTrailer} />}
-
-      {/* {gotVideo ? (
-        <YoutubeVideo videoId={currentKey} />
-      ) : (
-        <img
-          className="poster-image-0"
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt="Pic"
-        />
-      )} */}
-      {/* {img} */}
+      <div>Movie Trailer</div>
+      {/* {currentKey && <YoutubeVideo videoId={currentKey} />} */}
+      {img}
     </div>
   );
 }
