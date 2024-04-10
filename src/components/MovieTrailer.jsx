@@ -8,6 +8,7 @@ import "./MovieTrailer.css";
 
 const requestConfig = {};
 export default function MovieTrailer({ movie, link }) {
+  useEffect(() => {}, [link]);
   const img = (
     <img
       className="poster-image-0"

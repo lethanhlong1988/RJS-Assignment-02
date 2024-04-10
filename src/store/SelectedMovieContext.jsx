@@ -10,8 +10,8 @@ const SelectedMovieContext = createContext({
 });
 
 export function SelectedMovieContextProvider({ children }) {
-  const [selectedMovie, setSelectedMovie] = useState({});
-  const [currentLink, setCurrentLink] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [currentLink, setCurrentLink] = useState(null);
   const [viewOn, setViewOn] = useState(false);
 
   function selectMovie(movie) {

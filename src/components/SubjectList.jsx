@@ -6,7 +6,7 @@ import MovieList from "./MovieList";
 
 import MovieContext from "../store/MovieContext";
 
-export default function ObjectsList() {
+export default function SubjectsList() {
   const movieCxt = useContext(MovieContext);
   return (
     <ul className="object-list-container">

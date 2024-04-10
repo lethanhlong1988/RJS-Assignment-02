@@ -15,7 +15,7 @@ export default function useGetVideo(url, config, initialData) {
   const [loadedDatas, setLoadedDatas] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  const [currentKey, setCurrentKey] = useState(null);
+  const [gotKey, setGotKey] = useState(null);
 
   const sendRequest = useCallback(async () => {
     setIsLoading(true);
@@ -25,14 +25,7 @@ export default function useGetVideo(url, config, initialData) {
     } catch (error) {
       setError("Something went wrong!");
     }
-    setIsLoading(false);
-  }, [url, config]);
 
-  useEffect(() => {
-    sendRequest();
-  }, [sendRequest, url]);
-
-  useEffect(() => {
     if (loadedDatas) {
       const hasVideos =
         loadedDatas.results &&
@@ -48,13 +41,39 @@ export default function useGetVideo(url, config, initialData) {
             video.site === "YouTube" &&
             (video.type === "Trailer" || video.type === "Teaser"),
         );
-        setCurrentKey(firstMatchingVideo.key);
+        setGotKey(firstMatchingVideo.key);
       }
     }
-  }, [loadedDatas]);
+    setIsLoading(false);
+  }, [url]);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  // useEffect(() => {
+  //   if (loadedDatas) {
+  //     const hasVideos =
+  //       loadedDatas.results &&
+  //       loadedDatas.results.some(
+  //         (video) =>
+  //           video.site === "YouTube" &&
+  //           (video.type === "Trailer" || video.type === "Teaser"),
+  //       );
+
+  //     if (hasVideos) {
+  //       const firstMatchingVideo = loadedDatas.results.find(
+  //         (video) =>
+  //           video.site === "YouTube" &&
+  //           (video.type === "Trailer" || video.type === "Teaser"),
+  //       );
+  //       setCurrentKey(firstMatchingVideo.key);
+  //     }
+  //   }
+  // }, [loadedDatas]);
 
   return {
-    currentKey,
+    gotKey,
     isLoading,
     error,
   };
