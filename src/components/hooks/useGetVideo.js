@@ -1,16 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 
-async function sendHttpRequest(url, config) {
-  const response = await fetch(url, config);
-  const resData = await response.json();
-
-  if (!response.ok) {
-    throw new Error("Something went wrong!");
-  }
-
-  return resData;
-}
-
 export default function useGetVideo(url, config, initialData) {
   const [loadedDatas, setLoadedDatas] = useState(initialData);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,31 +7,37 @@ export default function useGetVideo(url, config, initialData) {
   const [gotKey, setGotKey] = useState(null);
 
   const sendRequest = useCallback(async () => {
+    setError(false);
     setIsLoading(true);
     try {
-      const resData = await sendHttpRequest(url, config);
-      setLoadedDatas(resData);
-    } catch (error) {
-      setError("Something went wrong!");
-    }
+      const response = await fetch(url, config);
+      if (!response.ok) {
+        setError(true);
+        console.log(error);
+      } else {
+        const resData = await response.json();
+        setLoadedDatas(resData);
+        const hasVideos =
+          resData.results &&
+          resData.results.some(
+            (video) =>
+              video.site === "YouTube" &&
+              (video.type === "Trailer" || video.type === "Teaser"),
+          );
 
-    if (loadedDatas) {
-      const hasVideos =
-        loadedDatas.results &&
-        loadedDatas.results.some(
-          (video) =>
-            video.site === "YouTube" &&
-            (video.type === "Trailer" || video.type === "Teaser"),
-        );
-
-      if (hasVideos) {
-        const firstMatchingVideo = loadedDatas.results.find(
-          (video) =>
-            video.site === "YouTube" &&
-            (video.type === "Trailer" || video.type === "Teaser"),
-        );
-        setGotKey(firstMatchingVideo.key);
+        if (hasVideos) {
+          const firstMatchingVideo = resData.results.find(
+            (video) =>
+              video.site === "YouTube" &&
+              (video.type === "Trailer" || video.type === "Teaser"),
+          );
+          setGotKey(firstMatchingVideo.key);
+          console.log(gotKey);
+        }
       }
+    } catch (error) {
+      setError(true);
+      console.log(error);
     }
     setIsLoading(false);
   }, [url]);
@@ -50,27 +45,6 @@ export default function useGetVideo(url, config, initialData) {
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
-
-  // useEffect(() => {
-  //   if (loadedDatas) {
-  //     const hasVideos =
-  //       loadedDatas.results &&
-  //       loadedDatas.results.some(
-  //         (video) =>
-  //           video.site === "YouTube" &&
-  //           (video.type === "Trailer" || video.type === "Teaser"),
-  //       );
-
-  //     if (hasVideos) {
-  //       const firstMatchingVideo = loadedDatas.results.find(
-  //         (video) =>
-  //           video.site === "YouTube" &&
-  //           (video.type === "Trailer" || video.type === "Teaser"),
-  //       );
-  //       setCurrentKey(firstMatchingVideo.key);
-  //     }
-  //   }
-  // }, [loadedDatas]);
 
   return {
     gotKey,

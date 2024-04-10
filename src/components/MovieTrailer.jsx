@@ -18,14 +18,14 @@ export default function MovieTrailer({ movie, link }) {
   );
   console.log(link);
 
-  const { currentKey, isLoading, error } = useGetVideo(link, requestConfig, []);
+  const { gotKey, isLoading, error } = useGetVideo(link, requestConfig, []);
   if (isLoading) {
     return <p className="isLoading">Loading ...</p>;
   }
   if (error) {
     return (
       <div className="movie-trailer-container">
-        <div>Movie Trailer</div>
+        <div>Movie Trailer not loaded</div>
         {img}
       </div>
     );
@@ -33,8 +33,8 @@ export default function MovieTrailer({ movie, link }) {
 
   return (
     <div className="movie-trailer-container">
-      <div>Movie Trailer</div>
-      {currentKey && <YoutubeVideo videoId={currentKey} />}
+      <div>Movie Trailer did load</div>
+      {gotKey && <YoutubeVideo videoId={gotKey} />}
       {/* {img} */}
     </div>
   );
