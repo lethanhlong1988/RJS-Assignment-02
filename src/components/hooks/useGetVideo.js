@@ -7,6 +7,7 @@ export default function useGetVideo(url, config, initialData) {
   const [gotKey, setGotKey] = useState(null);
 
   const sendRequest = useCallback(async () => {
+    setGotKey(null);
     setError(false);
     setIsLoading(true);
     try {

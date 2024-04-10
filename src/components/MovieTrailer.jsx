@@ -22,7 +22,7 @@ export default function MovieTrailer({ movie, link }) {
   if (isLoading) {
     return <p className="isLoading">Loading ...</p>;
   }
-  if (error) {
+  if (error || gotKey === null) {
     return (
       <div className="movie-trailer-container">
         <div>Movie Trailer not loaded</div>
