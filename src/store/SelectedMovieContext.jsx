@@ -1,6 +1,5 @@
 import { createContext, useState, useRef } from "react";
-
-const API_KEY = "ebdfe99a5e2ab4ba5d1256336c5f3fa4";
+import { API_KEY } from "./apiKey";
 
 const SelectedMovieContext = createContext({
   selectedMovie: {},
@@ -18,8 +17,13 @@ export function SelectedMovieContextProvider({ children }) {
     const link = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}`;
     setSelectedMovie(movie);
     setCurrentLink(link);
-    // setViewOn((preViewOn) => !preViewOn);
-    setViewOn(true);
+    setViewOn((preMovie) => {
+      if ((preMovie = movie)) {
+        setViewOn((preViewOn) => !preViewOn);
+      } else {
+        setViewOn(true);
+      }
+    });
     console.log("selected");
   }
 
