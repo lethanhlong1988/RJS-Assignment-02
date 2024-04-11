@@ -20,5 +20,10 @@
 }
 
 .navbar.scrolled {
-  background-color: black;
+  /* background-color: black; */
+  background-image: radial-gradient(
+    ellipse at top left,
+    rgba(0, 0, 0, 0.618),
+    rgba(35, 143, 252, 0.604)
+  );
 }

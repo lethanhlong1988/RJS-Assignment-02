@@ -1,0 +1,33 @@
+.search-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-table {
+  position: fixed;
+  top: 5rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.input-form {
+  margin: 1rem;
+  color: black;
+}
+
+.action-form {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.reset-button {
+  color: black;
+  margin-right: 0.5rem;
+}
+
+.search-button {
+  background-color: rgb(110, 164, 252);
+}
