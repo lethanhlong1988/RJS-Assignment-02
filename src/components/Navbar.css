@@ -1,12 +1,15 @@
 .navbar-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* background-image: url("../assets/NavPic.jpg"); */
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar {
   /* height: 2rem; */
+  position: fixed;
+  top: 1rem;
+  margin: auto;
+  width: 90%;
   transition: background-color 0.3s;
   background-color: transparent;
   background-size: contain;

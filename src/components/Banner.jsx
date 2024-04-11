@@ -1,43 +1,51 @@
-import { useEffect } from "react";
-import useHttp from "./hooks/useHttp";
+import { useState, useEffect } from "react";
+
+import Navbar from "./Navbar";
 import "./Banner.css";
 
 import Button from "./UI/Button";
 import { requests } from "../store/apiKey";
 
 export default function Banner() {
+  const [loadbannerData, setLoadBannerData] = useState([]);
   const bannerLink = `https://api.themoviedb.org/3${requests.fetchTrending}`;
-  console.log(bannerLink);
+
   useEffect(() => {
-    const { data: bannerData, loading, rerror } = useHttp(bannerLink, {}, []);
-
-    if (loading) {
-      return <p>Fetching Movies ...</p>;
+    async function fetchBanner() {
+      const response = await fetch(bannerLink);
+      if (!response.ok) {
+        console.log("Not get Data!!!");
+      }
+      const bannerData = await response.json();
+      const bannerMovie =
+        bannerData.results[
+          Math.floor(Math.random() * bannerData.results.length - 1)
+        ];
+      console.log(bannerMovie);
+      setLoadBannerData(bannerMovie);
     }
-
-    if (rerror) {
-      return <p>Something went wrong ...</p>;
-    }
-    const bannerMovieList = bannerData.data.results;
-    if (!bannerMovieList || bannerMovieList.length === 0) {
-      return <p>No movies found!!!</p>;
-    }
+    fetchBanner();
   }, []);
 
   return (
-    <div className="my-content">
-      <div>
-        <h1>Name</h1>
-      </div>
-      <div className="action-bar">
-        <Button>Play</Button>
-        <Button>My List</Button>
-      </div>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis a
-          sint excepturi ab, laudantium dolore.
-        </p>
+    <div
+      className="banner-container"
+      style={{
+        backgroundImage: `url('https://image.tmdb.org/t/p/w500${loadbannerData.backdrop_path}')`,
+      }}
+    >
+      <Navbar />
+      <div className="my-content">
+        <div>
+          <h1>{loadbannerData.name || loadbannerData.title}</h1>
+        </div>
+        <div className="action-bar">
+          <Button>Play</Button>
+          <Button>My List</Button>
+        </div>
+        <div>
+          <p>{loadbannerData.overview}</p>
+        </div>
       </div>
     </div>
   );

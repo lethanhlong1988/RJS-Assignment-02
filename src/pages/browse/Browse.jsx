@@ -15,8 +15,8 @@ export default function Browse() {
   return (
     <div className="app">
       <div className="app-content">
-        <h1>Browse</h1>
-        <Navbar />
+        {/* <h1>Browse</h1> */}
+        {/* <Navbar /> */}
         <Banner />
         {selectedMovieCtx.viewOn && <MovieDetail />}
         <SubjectList />

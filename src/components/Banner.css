@@ -1,3 +1,7 @@
+.banner-container {
+  background-size: cover;
+}
+
 .action-bar {
   display: flex;
   align-content: flex-start;
