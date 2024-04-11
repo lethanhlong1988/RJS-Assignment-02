@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useHttp from "./hooks/useHttp";
 import "./Banner.css";
 
@@ -7,19 +8,22 @@ import { requests } from "../store/apiKey";
 export default function Banner() {
   const bannerLink = `https://api.themoviedb.org/3${requests.fetchTrending}`;
   console.log(bannerLink);
-  const dataRequest = useHttp(bannerLink, {}, []);
+  useEffect(() => {
+    const { data: bannerData, loading, rerror } = useHttp(bannerLink, {}, []);
 
-  if (dataRequest.isLoading) {
-    return <p>Fetching Movies ...</p>;
-  }
+    if (loading) {
+      return <p>Fetching Movies ...</p>;
+    }
 
-  if (dataRequest.error) {
-    return <p>Something went wrong ...</p>;
-  }
-  const movieList = dataRequest.data.results;
-  if (!movieList || movieList.length === 0) {
-    return <p>No movies found!!!</p>;
-  }
+    if (rerror) {
+      return <p>Something went wrong ...</p>;
+    }
+    const bannerMovieList = bannerData.data.results;
+    if (!bannerMovieList || bannerMovieList.length === 0) {
+      return <p>No movies found!!!</p>;
+    }
+  }, []);
+
   return (
     <div className="my-content">
       <div>
